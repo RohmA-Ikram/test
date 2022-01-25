@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export const UserId = () => {
-  const url = "https://jsonplaceholder.typicode.com/posts";
+  const { id } = useParams();
+  const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
   const [allPost, setpost] = useState([]);
+  
   const getpost = async () => {
     const response = await fetch(url);
     const res = await response.json();
@@ -15,7 +17,6 @@ export const UserId = () => {
   //   useEffect(() => {
   //     getpost();
   // },[]);
-  const { id } = useParams();
   const newId = allPost.find((i) => i.id === parseInt(id));
   console.log(newId);
   //console.log(allPost);
